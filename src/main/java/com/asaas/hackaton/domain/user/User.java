@@ -12,6 +12,9 @@ public class User {
     @Column(unique = true)
     String email;
 
+    @Column(unique = true)
+    String apiKey;
+
     public Long getId() {
         return id;
     }
@@ -27,6 +30,15 @@ public class User {
 
     public User setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public User setApiKey(String apiKey) {
+        this.apiKey = apiKey;
         return this;
     }
 }

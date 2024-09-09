@@ -24,7 +24,7 @@ public class UserController {
     public ResponseEntity<UserResponseDTO> save(@RequestBody UserRequestDTO userRequestDTO) {
         User user = userService.save(userRequestDTO);
 
-        UserResponseDTO userResponseDTO = new UserResponseDTO(user.getEmail());
+        UserResponseDTO userResponseDTO = new UserResponseDTO(user.getEmail(), user.getApiKey());
         return ResponseEntity.ok(userResponseDTO);
     }
 }
