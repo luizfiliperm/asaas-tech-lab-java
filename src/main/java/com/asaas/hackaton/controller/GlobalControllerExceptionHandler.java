@@ -1,7 +1,7 @@
 package com.asaas.hackaton.controller;
 
-import com.asaas.hackaton.assets.AccessNotPermittedException;
-import com.asaas.hackaton.assets.NotFoundException;
+import com.asaas.hackaton.exception.AccessNotPermittedException;
+import com.asaas.hackaton.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

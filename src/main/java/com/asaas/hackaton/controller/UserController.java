@@ -1,5 +1,6 @@
 package com.asaas.hackaton.controller;
 
+import com.asaas.hackaton.adapter.UserAdapter;
 import com.asaas.hackaton.domain.user.User;
 import com.asaas.hackaton.dto.UserRequestDTO;
 import com.asaas.hackaton.dto.UserResponseDTO;
@@ -22,9 +23,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserResponseDTO> save(@RequestBody UserRequestDTO userRequestDTO) {
-        User user = userService.save(userRequestDTO);
+        UserAdapter user = userService.save(userRequestDTO);
 
-        UserResponseDTO userResponseDTO = new UserResponseDTO(user.getEmail(), user.getApiKey());
+        UserResponseDTO userResponseDTO = new UserResponseDTO(user.email(), user.apiKey());
         return ResponseEntity.ok(userResponseDTO);
     }
 }

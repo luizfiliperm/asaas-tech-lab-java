@@ -1,4 +1,4 @@
-package com.asaas.hackaton.assets;
+package com.asaas.hackaton.exception;
 
 public class AccessNotPermittedException extends RuntimeException {
 
