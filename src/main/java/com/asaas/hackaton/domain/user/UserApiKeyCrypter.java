@@ -2,7 +2,7 @@ package com.asaas.hackaton.domain.user;
 
 import java.util.Base64;
 
-public class UserApiKeyGenerator {
+public class UserApiKeyCrypter {
 
     public static String encrypt(String key) {
         return Base64.getEncoder().encodeToString(key.getBytes());
