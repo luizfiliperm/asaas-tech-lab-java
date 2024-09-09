@@ -1,6 +1,7 @@
 package com.asaas.hackaton.dto;
 
 public record UserRequestDTO(
-        String email
+        String email,
+        String password
 ) {
 }
