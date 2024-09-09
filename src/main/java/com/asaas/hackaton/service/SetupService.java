@@ -18,7 +18,8 @@ public class SetupService {
     }
 
     public void setup() {
-        boolean done = userRepository.existsById(1L);
+        final Long firstId = 1L;
+        boolean done = userRepository.existsById(firstId);
         if (done) return;
 
         System.out.println(this.getClass().getSimpleName() + " >> Setting up database");
