@@ -22,14 +22,12 @@ public class AuthenticatorInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (request.getHeader(HEADER_AUTHORIZATION) == null) {
-            response.addHeader("Interceptor", "Authorization não enviado");
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
         }
 
         Boolean isValid = userService.validateLogin(request.getHeader(HEADER_AUTHORIZATION));
         if (!isValid) {
-            response.addHeader("Interceptor", "Authorization inválido");
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
         }
