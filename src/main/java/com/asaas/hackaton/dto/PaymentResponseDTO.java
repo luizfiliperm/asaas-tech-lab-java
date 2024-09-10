@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public record PaymentResponseDTO(
-        String description,
+        BigDecimal value,
         String dueDate,
-        BigDecimal value
+        String description
 ) {
 
-    public static PaymentResponseDTO from(String description, Date dueDate, BigDecimal value) {
+    public static PaymentResponseDTO from(BigDecimal value, Date dueDate, String description) {
         String formattedDueDate = CustomDateUtils.formatDate(dueDate);
-        return new PaymentResponseDTO(description, formattedDueDate, value);
+        return new PaymentResponseDTO(value, formattedDueDate, description);
     }
 }

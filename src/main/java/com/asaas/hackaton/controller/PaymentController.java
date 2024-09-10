@@ -24,7 +24,7 @@ public class PaymentController {
     public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
         PaymentAdapter paymentAdapter = paymentService.create(paymentRequestDTO);
 
-        PaymentResponseDTO responseDTO = PaymentResponseDTO.from(paymentAdapter.description(), paymentAdapter.dueDate(), paymentAdapter.value());
+        PaymentResponseDTO responseDTO = PaymentResponseDTO.from(paymentAdapter.value(), paymentAdapter.dueDate(), paymentAdapter.description());
         return ResponseEntity.ok(responseDTO);
     }
 }
