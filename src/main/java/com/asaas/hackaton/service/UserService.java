@@ -28,12 +28,10 @@ public class UserService {
         User user = new User();
         user.setEmail(userRequestDTO.email());
 
-        String apiKey = UUID.randomUUID().toString();
-
-        user.setApiKey(apiKeyEncoder.encode(apiKey));
+        user.setApiKey(apiKeyEncoder.encode(userRequestDTO.password()));
         user = userRepository.save(user);
 
-        return new UserAdapter(user.getEmail(), apiKey);
+        return new UserAdapter(user.getEmail(), userRequestDTO.password());
     }
 
     public void validateLogin(String email, String apiKey) {
