@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class JwtGenerator {
 
-    private static final String SECRET_KEY = "mySecretKey";
+    private static final String SECRET_KEY = "ad0496b5-290c-4c0a-99ee-4ca6fb18153e";
 
     public static String generateToken(String username) {
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
