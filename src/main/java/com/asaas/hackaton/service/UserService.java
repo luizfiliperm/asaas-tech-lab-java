@@ -21,7 +21,6 @@ public class UserService {
     public UserAdapter save(UserRequestDTO userRequestDTO) {
         User user = new User();
         user.setEmail(userRequestDTO.email());
-
         user.setApiKey(JwtUtils.generateToken(userRequestDTO.email()));
         user = userRepository.save(user);
 
