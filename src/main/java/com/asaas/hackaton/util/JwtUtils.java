@@ -5,7 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-public class JwtGenerator {
+public class JwtUtils {
 
     private static final String SECRET_KEY = "ad0496b5-290c-4c0a-99ee-4ca6fb18153e";
 
