@@ -1,6 +1,5 @@
 package com.asaas.hackaton.controller;
 
-import com.asaas.hackaton.repository.UserRepository;
 import com.asaas.hackaton.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
