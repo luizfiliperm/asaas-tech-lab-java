@@ -11,7 +11,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class AuthenticatorInterceptor implements HandlerInterceptor {
 
-    private static final String HEADER_EMAIL = "Email";
     private static final String HEADER_AUTHORIZATION = "Authorization";
 
     private final UserService userService;
@@ -28,7 +27,12 @@ public class AuthenticatorInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        userService.validateLogin(request.getHeader(HEADER_AUTHORIZATION));
+        Boolean isValid = userService.validateLogin(request.getHeader(HEADER_AUTHORIZATION));
+        if (!isValid) {
+            response.addHeader("Interceptor", "Authorization inválido");
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return false;
+        }
         return true;
     }
 
