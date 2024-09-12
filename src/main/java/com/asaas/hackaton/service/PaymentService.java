@@ -22,6 +22,7 @@ public class PaymentService {
     public PaymentAdapter create(PaymentRequestDTO paymentRequestDTO) {
         Date dueDate = CustomDateUtils.parseDate(paymentRequestDTO.dueDate());
 
+        asaasClient.createCustomer(paymentRequestDTO.customer());
         asaasClient.createPayment(paymentRequestDTO);
 
         return new PaymentAdapter(paymentRequestDTO.value(), paymentRequestDTO.description(), dueDate);
