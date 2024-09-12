@@ -1,6 +1,6 @@
 package com.asaas.hackaton.integration.dto;
 
-public record CreateCustomerAccountResponseDTO(
+public record AsaasCreateCustomerAccountResponseDTO(
         String id
 ) {
 }

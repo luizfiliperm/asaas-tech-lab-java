@@ -3,6 +3,7 @@ package com.asaas.hackaton.service;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
 import com.asaas.hackaton.integration.AsaasClient;
+import com.asaas.hackaton.integration.dto.AsaasCreatePaymentRequestDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,8 @@ public class PaymentService {
     }
 
     public PaymentResponseDTO create(PaymentRequestDTO paymentRequestDTO) {
-        asaasClient.createCustomer(paymentRequestDTO.customer());
-        return asaasClient.createPayment(paymentRequestDTO);
+        String customer = asaasClient.createCustomer(paymentRequestDTO.customer());
+        AsaasCreatePaymentRequestDTO asaasCreatePaymentRequestDTO = new AsaasCreatePaymentRequestDTO(paymentRequestDTO, customer);
+        return asaasClient.createPayment(asaasCreatePaymentRequestDTO);
     }
 }

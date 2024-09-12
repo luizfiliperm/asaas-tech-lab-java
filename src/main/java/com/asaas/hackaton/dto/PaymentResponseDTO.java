@@ -7,6 +7,7 @@ public record PaymentResponseDTO(
         String dueDate,
         String description,
         String billingType,
-        String status
+        String status,
+        String customer
 ) {
 }

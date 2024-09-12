@@ -1,9 +1,9 @@
 package com.asaas.hackaton.integration;
 
 import com.asaas.hackaton.dto.CustomerAccountRequestDTO;
-import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
-import com.asaas.hackaton.integration.dto.CreateCustomerAccountResponseDTO;
+import com.asaas.hackaton.integration.dto.AsaasCreatePaymentRequestDTO;
+import com.asaas.hackaton.integration.dto.AsaasCreateCustomerAccountResponseDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,12 +35,12 @@ public class AsaasClient {
         return headers;
     }
 
-    public PaymentResponseDTO createPayment(PaymentRequestDTO paymentRequest) {
+    public PaymentResponseDTO createPayment(AsaasCreatePaymentRequestDTO paymentRequest) {
         String url = UriComponentsBuilder.fromHttpUrl(baseUrl)
                 .path("/payments")
                 .toUriString();
 
-        HttpEntity<PaymentRequestDTO> entity = new HttpEntity<>(paymentRequest, createHeaders());
+        HttpEntity<AsaasCreatePaymentRequestDTO> entity = new HttpEntity<>(paymentRequest, createHeaders());
 
         ResponseEntity<PaymentResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, entity, PaymentResponseDTO.class);
 
@@ -54,7 +54,7 @@ public class AsaasClient {
 
         HttpEntity<CustomerAccountRequestDTO> entity = new HttpEntity<>(customerAccountDTO, createHeaders());
 
-        ResponseEntity<CreateCustomerAccountResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, entity, CreateCustomerAccountResponseDTO.class);
+        ResponseEntity<AsaasCreateCustomerAccountResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, entity, AsaasCreateCustomerAccountResponseDTO.class);
 
         return response.getBody().id();
     }
