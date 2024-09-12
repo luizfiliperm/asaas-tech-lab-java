@@ -7,7 +7,7 @@ public record PaymentRequestDTO(
         String description,
         BigDecimal value,
         String dueDate,
-        CustomerAccountDTO customer,
+        CustomerAccountRequestDTO customer,
         String billingType
 ) {
     public PaymentRequestDTO {
