@@ -22,9 +22,7 @@ public class PaymentController {
 
     @PostMapping
     public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
-        PaymentAdapter paymentAdapter = paymentService.create(paymentRequestDTO);
-
-        PaymentResponseDTO responseDTO = PaymentResponseDTO.from(paymentAdapter.value(), paymentAdapter.dueDate(), paymentAdapter.description());
+        PaymentResponseDTO responseDTO = paymentService.create(paymentRequestDTO);
         return ResponseEntity.ok(responseDTO);
     }
 }
