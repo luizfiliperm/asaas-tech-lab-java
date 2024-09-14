@@ -11,7 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class AuthenticatorInterceptor implements HandlerInterceptor {
 
     private static final String HEADER_AUTHORIZATION = "Authorization";
-
+    private static final String BYPASS_URI = "/healthcheck";
     private final UserService userService;
 
     public AuthenticatorInterceptor(UserService userService) {
@@ -20,6 +20,8 @@ public class AuthenticatorInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (request.getRequestURI().equals(BYPASS_URI)) return true;
+
         if (request.getHeader(HEADER_AUTHORIZATION) == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
