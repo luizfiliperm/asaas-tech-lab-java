@@ -1,0 +1,20 @@
+version: "3.5"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: api01
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "220MB"
+
+networks:
+  default:
+    driver: bridge
+    name: asaas-tech-lab
