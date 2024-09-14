@@ -1,6 +1,7 @@
 package com.asaas.hackaton.integration;
 
 import com.asaas.hackaton.dto.CustomerAccountRequestDTO;
+import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
 import com.asaas.hackaton.integration.dto.AsaasCreatePaymentRequestDTO;
 import com.asaas.hackaton.integration.dto.AsaasCreateCustomerAccountResponseDTO;
@@ -57,5 +58,17 @@ public class AsaasClient {
         ResponseEntity<AsaasCreateCustomerAccountResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, entity, AsaasCreateCustomerAccountResponseDTO.class);
 
         return response.getBody().id();
+    }
+
+    public ListPaymentResponseDTO listPayment() {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .path("/payments")
+                .toUriString();
+
+        HttpEntity<Void> entity = new HttpEntity<>(createHeaders());
+
+        ResponseEntity<ListPaymentResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, ListPaymentResponseDTO.class);
+
+        return response.getBody();
     }
 }

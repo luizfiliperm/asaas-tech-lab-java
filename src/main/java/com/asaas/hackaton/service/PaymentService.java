@@ -1,5 +1,6 @@
 package com.asaas.hackaton.service;
 
+import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
 import com.asaas.hackaton.integration.AsaasClient;
@@ -21,5 +22,9 @@ public class PaymentService {
         String customer = asaasClient.createCustomer(paymentRequestDTO.customer());
         AsaasCreatePaymentRequestDTO asaasCreatePaymentRequestDTO = new AsaasCreatePaymentRequestDTO(paymentRequestDTO, customer);
         return asaasClient.createPayment(asaasCreatePaymentRequestDTO);
+    }
+
+    public ListPaymentResponseDTO list() {
+        return asaasClient.listPayment();
     }
 }

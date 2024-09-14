@@ -1,14 +1,12 @@
 package com.asaas.hackaton.controller;
 
 import com.asaas.hackaton.adapter.PaymentAdapter;
+import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
 import com.asaas.hackaton.service.PaymentService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/payments")
@@ -23,6 +21,12 @@ public class PaymentController {
     @PostMapping
     public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
         PaymentResponseDTO responseDTO = paymentService.create(paymentRequestDTO);
+        return ResponseEntity.ok(responseDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<ListPaymentResponseDTO> list() {
+        ListPaymentResponseDTO responseDTO = paymentService.list();
         return ResponseEntity.ok(responseDTO);
     }
 }
