@@ -4,6 +4,7 @@ import com.asaas.hackaton.burstlimit.BurstLimit;
 import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
+import com.asaas.hackaton.quotalimit.QuotaLimit;
 import com.asaas.hackaton.ratelimit.RateLimit;
 import com.asaas.hackaton.service.PaymentService;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class PaymentController {
     }
 
     @PostMapping
+    @QuotaLimit
     @BurstLimit(maxParallelRequests = 10)
     public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
         PaymentResponseDTO responseDTO = paymentService.create(paymentRequestDTO);
