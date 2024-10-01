@@ -1,6 +1,7 @@
 package com.asaas.hackaton.service;
 
 import com.asaas.hackaton.domain.user.User;
+import com.asaas.hackaton.limit.BaseLimitService;
 import com.asaas.hackaton.quotalimit.UserQuota;
 import com.asaas.hackaton.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class QuotaLimitService {
+public class QuotaLimitService implements BaseLimitService {
 
     private final UserRepository userRepository;
 
@@ -38,5 +39,8 @@ public class QuotaLimitService {
         return true;
     }
 
-
+    @Override
+    public void reset() {
+        userQuotaMap.clear();
+    }
 }

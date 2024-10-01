@@ -1,5 +1,6 @@
 package com.asaas.hackaton.service;
 
+import com.asaas.hackaton.limit.BaseLimitService;
 import com.asaas.hackaton.ratelimit.RequestInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class RateLimitService {
+public class RateLimitService implements BaseLimitService {
 
     private final Map<String, RequestInfo> requestInfoMap = new HashMap<>();
 
@@ -39,5 +40,10 @@ public class RateLimitService {
 
     private String buildKey(String userIssuer, String method, String uri) {
         return userIssuer + method + uri;
+    }
+
+    @Override
+    public void reset() {
+        requestInfoMap.clear();
     }
 }
