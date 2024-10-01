@@ -16,7 +16,7 @@ public class User {
     String apiKey;
 
     @Column
-    Integer maxPaymentsPerDay = 10;
+    Integer maxPaymentsCreatedPerDay = 10;
 
     public Long getId() {
         return id;
@@ -45,11 +45,11 @@ public class User {
         return this;
     }
 
-    public Integer getMaxPaymentsPerDay() {
-        return maxPaymentsPerDay;
+    public Integer getMaxPaymentsCreatedPerDay() {
+        return maxPaymentsCreatedPerDay;
     }
 
-    public void setMaxPaymentsPerDay(Integer maxPaymentsPerDay) {
-        this.maxPaymentsPerDay = maxPaymentsPerDay;
+    public void setMaxPaymentsCreatedPerDay(Integer maxPaymentsCreatedPerDay) {
+        this.maxPaymentsCreatedPerDay = maxPaymentsCreatedPerDay;
     }
 }

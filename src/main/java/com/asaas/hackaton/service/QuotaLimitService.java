@@ -30,7 +30,7 @@ public class QuotaLimitService {
             userQuotaMap.put(user.getId(), userQuota);
         }
 
-        if (userQuota.getRequestCount() >= user.getMaxPaymentsPerDay()) {
+        if (userQuota.getRequestCount() >= user.getMaxPaymentsCreatedPerDay()) {
             return false;
         }
 
