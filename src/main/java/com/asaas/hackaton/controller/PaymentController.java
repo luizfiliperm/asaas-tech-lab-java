@@ -1,5 +1,6 @@
 package com.asaas.hackaton.controller;
 
+import com.asaas.hackaton.burstlimit.BurstLimit;
 import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
@@ -19,6 +20,7 @@ public class PaymentController {
     }
 
     @PostMapping
+    @BurstLimit(maxParallelRequests = 10)
     public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
         PaymentResponseDTO responseDTO = paymentService.create(paymentRequestDTO);
         return ResponseEntity.ok(responseDTO);
