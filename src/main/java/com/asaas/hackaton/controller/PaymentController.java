@@ -1,9 +1,9 @@
 package com.asaas.hackaton.controller;
 
-import com.asaas.hackaton.adapter.PaymentAdapter;
 import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
+import com.asaas.hackaton.ratelimit.RateLimit;
 import com.asaas.hackaton.service.PaymentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +25,7 @@ public class PaymentController {
     }
 
     @GetMapping
+    @RateLimit(requestsPerMinute = 100)
     public ResponseEntity<ListPaymentResponseDTO> list() {
         ListPaymentResponseDTO responseDTO = paymentService.list();
         return ResponseEntity.ok(responseDTO);
