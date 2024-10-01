@@ -1,22 +1,27 @@
 package com.asaas.hackaton.config;
 
 import com.asaas.hackaton.controller.AuthenticatorInterceptor;
-import org.springframework.stereotype.Component;
+import com.asaas.hackaton.ratelimit.RateLimitInterceptor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Component
+@Configuration
 public class ConfigInterceptor implements WebMvcConfigurer {
 
     private final AuthenticatorInterceptor authenticatorInterceptor;
 
-    public ConfigInterceptor(AuthenticatorInterceptor authenticatorInterceptor) {
+    private final RateLimitInterceptor rateLimitInterceptor;
+
+    public ConfigInterceptor(AuthenticatorInterceptor authenticatorInterceptor, RateLimitInterceptor rateLimitInterceptor) {
         this.authenticatorInterceptor = authenticatorInterceptor;
+        this.rateLimitInterceptor = rateLimitInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticatorInterceptor);
+        registry.addInterceptor(rateLimitInterceptor);
     }
 
 }

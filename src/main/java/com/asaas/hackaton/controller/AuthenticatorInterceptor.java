@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class AuthenticatorInterceptor implements HandlerInterceptor {
 
-    private static final String HEADER_AUTHORIZATION = "Authorization";
+    public static final String HEADER_AUTHORIZATION = "Authorization";
     private static final String BYPASS_URI = "/healthcheck";
     private final UserService userService;
 
