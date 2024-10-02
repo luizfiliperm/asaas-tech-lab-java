@@ -25,7 +25,7 @@ class GlobalControllerExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpClientErrorException.class)
     public ResponseEntity<String> httpClientError(HttpClientErrorException exception) {
-        return ResponseEntity.ok(exception.getResponseBodyAsString());
+        return new ResponseEntity<>(exception.getResponseBodyAsString(), exception.getStatusCode());
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
