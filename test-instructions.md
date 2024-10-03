@@ -14,3 +14,8 @@ chmod +x ./local-test.sh # concede permissao para executar
 ```bash
 cat ./asaas-tech-lab-test/results.json
 ```
+
+# Publicar imagem docker
+```bash
+mvn compile jib:build
+```
