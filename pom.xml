@@ -82,7 +82,7 @@
             <version>3.3.1</version>
             <configuration>
                 <to>
-                    <image>jpborba/asaas-tech-lab:latest</image> <!-- Para Docker Hub -->
+                    <image>youraccount/asaas-tech-lab:latest</image> <!-- Para Docker Hub -->
                 </to>
             </configuration>
         </plugin>
