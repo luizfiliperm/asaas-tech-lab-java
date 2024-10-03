@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class HackatonApplication {
 
 	public static void main(String[] args) {
+        System.out.println("test");
 		SpringApplication.run(HackatonApplication.class, args);
 	}
 
