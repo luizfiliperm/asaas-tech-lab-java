@@ -27,4 +27,8 @@ public class PaymentService {
     public ListPaymentResponseDTO list() {
         return asaasClient.listPayment();
     }
+
+    public PaymentResponseDTO findById(String id) {
+        return asaasClient.findPaymentById(id);
+    }
 }

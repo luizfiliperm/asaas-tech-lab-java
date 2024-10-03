@@ -1,6 +1,5 @@
 package com.asaas.hackaton.controller;
 
-import com.asaas.hackaton.adapter.PaymentAdapter;
 import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
@@ -27,6 +26,12 @@ public class PaymentController {
     @GetMapping
     public ResponseEntity<ListPaymentResponseDTO> list() {
         ListPaymentResponseDTO responseDTO = paymentService.list();
+        return ResponseEntity.ok(responseDTO);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PaymentResponseDTO> findById(@PathVariable String id) {
+        PaymentResponseDTO responseDTO = paymentService.findById(id);
         return ResponseEntity.ok(responseDTO);
     }
 }

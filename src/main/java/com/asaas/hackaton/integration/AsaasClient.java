@@ -71,4 +71,17 @@ public class AsaasClient {
 
         return response.getBody();
     }
+
+    public PaymentResponseDTO findPaymentById(String id) {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .path("/payments/{id}")
+                .build(id)
+                .toString();
+
+        HttpEntity<Void> entity = new HttpEntity<>(createHeaders());
+
+        ResponseEntity<PaymentResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, PaymentResponseDTO.class);
+
+        return response.getBody();
+    }
 }
