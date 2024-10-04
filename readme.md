@@ -69,7 +69,7 @@ O desafio consiste em receber uma alta carga de chamados na API e adicionar os l
 - Verificar o saldo e realizar transferências apenas se tiver saldo positivo
 
 **Desafio 3: Aplicar idempotência**
-- Fazer com que a rotina de criação de cobranças seja idempotente
+- Fazer com que a rotina de criação de cobranças seja idempotente através de uma chave de idempotência informada no header da requisição utilizando a sintaxe `Idempotency-Key`: `key`
 
 ## O que será avaliado?
 
