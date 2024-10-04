@@ -1,0 +1,3 @@
+[submodule "asaas-tech-lab-test"]
+	path = asaas-tech-lab-test
+	url = https://github.com/asaasdev/asaas-tech-lab-test.git
