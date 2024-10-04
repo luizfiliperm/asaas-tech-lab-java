@@ -20,13 +20,15 @@ willevini
 
 ## Pré-requisitos
 
-Antes de mais nada, você  vai precisar do maven:
+1. Antes de mais nada, você  vai precisar do maven:
 
 https://maven.apache.org/download.cgi
 
-E também ter o docker instalada:
+2. E também ter o docker instalado:
 
 https://docs.docker.com/get-started/get-docker/
+
+3. Para realizar os testes durante desenvolvimento, [siga essas instruções](./test-instructions.md)
 
 Para rodar a aplicação, siga os passos abaixo:
 
@@ -69,7 +71,7 @@ O desafio consiste em receber uma alta carga de chamados na API e adicionar os l
 - Verificar o saldo e realizar transferências apenas se tiver saldo positivo
 
 **Desafio 3: Aplicar idempotência**
-- Fazer com que a rotina de criação de cobranças seja idempotente através de uma chave de idempotência informada no header da requisição utilizando a sintaxe `Idempotency-Key`: `key`
+- Fazer com que a rotina de criação de cobranças seja idempotente através de uma chave de idempotência informada no header da requisição utilizando a sintaxe `Idempotency-Key`: `value`
 
 ## O que será avaliado?
 
