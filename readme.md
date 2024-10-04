@@ -20,28 +20,11 @@ willevini
 
 ## Pré-requisitos
 
-1. Antes de mais nada, você  vai precisar do maven:
+Este projeto é uma aplicação baseada em Spring Boot 3.3.2 com gerenciamento de dependências via Maven que utiliza o banco de dados SQLite.
 
-https://maven.apache.org/download.cgi
+Para subir a aplicação, basta rodar o comando ``docker-compose up --build`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 
-2. E também ter o docker instalado:
-
-https://docs.docker.com/get-started/get-docker/
-
-3. Para realizar os testes durante desenvolvimento, [siga essas instruções](./test-instructions.md)
-
-Para rodar a aplicação, siga os passos abaixo:
-
-1. Clone o repositório
-2. Abra o projeto em sua IDE de preferência
-3. Execute o comando abaixo para gerar o artefato: 
-```shell
-mvn clean package
-```
-4. Execute o comando abaixo para subir o projeto:
-```shell
-docker-compose up
-```
+Para realizar os testes durante desenvolvimento, [siga essas instruções](./test-instructions.md)
 
 Você também pode rodar o projeto através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
 
