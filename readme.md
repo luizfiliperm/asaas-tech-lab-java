@@ -32,6 +32,16 @@ Para desenvolver localmente, você precisa ter instalado na seu dispositivo:
 - Maven
 - Docker e Docker-Compose
 
+### Banco de dados
+
+O projeto utiliza o SQLite, criado após a primeira execução do projeto, você pode acessa-lo por meio do seu editor preferido, com os seguintes dados:
+
+**URL**: ``jdbc:sqlite:memory:myDb?cache=shared``
+
+**username**: ``hackaton``
+
+**password**: ``hackaton``
+
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
