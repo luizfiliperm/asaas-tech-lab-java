@@ -1,6 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="HackatonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <configuration default="false" name="Docker" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="hackaton" />
+    <projectPathOnTarget name="projectPathOnTarget" value="/tech-lab-java" />
     <target name="app" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.asaas.hackaton.HackatonApplication" />
     <method v="2">

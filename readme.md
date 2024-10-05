@@ -20,13 +20,17 @@ willevini
 
 ## Pré-requisitos
 
-Este projeto é uma aplicação baseada em Spring Boot 3.3.2 com gerenciamento de dependências via Maven que utiliza o banco de dados SQLite.
+Para subir a aplicação, basta rodar o comando ``docker-compose up --build tech-lab-java`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 
-Para subir a aplicação, basta rodar o comando ``docker-compose up --build`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter os dados o script de teste e então ``docker-compose run k6`` para executar sempre que necessário. Lembre-se que o projeto Spring deve estar em execução.
 
-Para realizar os testes durante desenvolvimento, [siga essas instruções](./test-instructions.md)
+Você também pode rodar o projeto localmente através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
 
-Você também pode rodar o projeto através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
+Para desenvolver localmente, você precisa ter instalado na seu dispositivo:
+
+- Java 17.0.12
+- Maven
+- Docker e Docker-Compose
 
 ## Desafios
 
