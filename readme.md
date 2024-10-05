@@ -42,6 +42,11 @@ O projeto utiliza o SQLite, criado após a primeira execução do projeto, você
 
 **password**: ``hackaton``
 
+Sugestão de editores:
+
+- Database connections do Intellij
+- Sqlite Studio: https://sqlitestudio.pl/
+
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
