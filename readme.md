@@ -22,7 +22,7 @@ willevini
 
 Para subir a aplicação, basta rodar o comando ``docker-compose up --build tech-lab-java`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 
-Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter os dados o script de teste e então ``docker-compose run k6`` para executar sempre que necessário. Lembre-se que o projeto Spring deve estar em execução.
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter os dados o script de teste e então ``docker-compose run k6`` para executar sempre que necessário. Lembre-se que o container com o projeto spring acima deve estar em execução.
 
 Você também pode rodar o projeto localmente através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
 
