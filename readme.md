@@ -20,20 +20,42 @@ willevini
 
 ## Pré-requisitos
 
-Para rodar a aplicação, siga os passos abaixo:
+Para subir a aplicação, basta rodar o comando ``docker-compose up --build tech-lab-java`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 
-1. Clone o repositório
-2. Abra o projeto em sua IDE de preferência
-3. Execute o comando abaixo para gerar o artefato: 
-```shell
-mvn clean package
-```
-4. Execute o comando abaixo para subir o projeto:
-```shell
-docker-compose up
-```
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter os dados o script de teste e então ``docker-compose run k6`` para executar sempre que necessário. Lembre-se que o container com o projeto spring acima deve estar em execução.
 
-Você também pode rodar o projeto através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
+Você também pode rodar o projeto localmente através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
+
+Para desenvolver localmente, você precisa ter instalado na seu dispositivo:
+
+- Java 17.0.12
+- Maven
+- Docker e Docker-Compose
+
+### Banco de dados
+
+O projeto utiliza o SQLite, criado após a primeira execução do projeto, você pode acessa-lo por meio do seu editor preferido, com os seguintes dados:
+
+**URL**: ``jdbc:sqlite:memory:myDb?cache=shared``
+
+**username**: ``hackaton``
+
+**password**: ``hackaton``
+
+Sugestão de editores:
+
+- Database connections do Intellij
+- Sqlite Studio: https://sqlitestudio.pl/
+
+## Rotas pré configuradas
+
+Dentro do arquivo ``application.properties``, adicione a chave de API de sua equipe no campo ``asaas.api.key`` para possibilitar a integração com a API Asaas.
+
+Recursos já existentes para você solucionar os desafios abaixo
+
+``GET - /payments`` - Listar cobranças
+``GET - /payments?id=xxx`` - Buscar uma cobrança pelo Id
+``POST - /payments`` - Criar nova cobrança (Verificar dados de request no arquivo PaymentRequestDTO.java)
 
 ## Autenticação API
 Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
@@ -60,32 +82,39 @@ Para se autenticar na API, é necessário realizar o envio do Authorization no h
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
-- O desafio consiste em receber uma alta carga de chamados na API e adicionar os limites
-- A aplicação deve realizar bloqueios baseado nas regras definidas
-- É interessante criar um endpoint para resetar os limites
+
+O desafio consiste em receber uma alta carga de chamados na API e adicionar os limites. A aplicação deve realizar bloqueios baseado nas regras definidas:
+
 - Rate-limit
-  - máximo de 100 requisições por minuto nos endpoints de Lista cobranças e Recuperar uma única cobrança
-- Burst (semáforo)
-  - máximo de 10 requisições paralelas no endpoint de Criar cobrança
-- Quota (semáforo)
-  - verificar limites diários configurados para cada usuário para limitar o número de cobranças criadas por dia
+  - máximo de 100 requisições por minuto **por IP** nos endpoints de Listar cobranças e Recuperar uma única cobrança
+  - o Ip deverá ser enviado via header na request como `remote-ip` para que seja possível simular diferentes IPs
+- Burst
+  - máximo de 10 requisições paralelas **por IP** no endpoint de Criar cobrança
+  - o Ip deverá ser enviado via header na request como `remote-ip` para que seja possível simular diferentes IPs
+- Quota
+  - verificar limites diários configurados para cada usuário afim de limitar o quantidade de acessos ao endpoint de criação de cobrança
 
 **Desafio 2: Fazer uma rotina de transferências automáticas no Asaas**
 - O desafio é criar um Job que irá realizar transferências automáticas diariamente às 8h e 12h
-- A aplicação deve realizar a integração com o Asaas, receber pagamentos de cobranças e realizar a transferência para outra conta via Pix
-- Verificar saldo e realizar transferências apenas se tiver saldo positivo
+- A aplicação deve integrar-se com o Asaas e realizar a transferência para uma das chave PIX abaixo:
+  - `c4c52a44-070e-454a-8417-3cc312986a68`
+  - `524d069f-7b61-425b-a211-6cb3ad4ba1b5`
+  - `c2a81e71-a138-4e34-985e-a5abea4cd0f5`
+  - `942c4a99-770b-40ac-9068-f152a0adc532`
+  - `95f80f23-bf81-4d9c-9090-a16caa18f17e`
+- Verificar o saldo e realizar transferências apenas se tiver saldo positivo
 
 **Desafio 3: Aplicar idempotência**
-- Fazer com que o controller de cobranças seja idempotente
+- Fazer com que a rotina de criação de cobranças seja idempotente através de uma chave de idempotência informada no header da requisição utilizando a sintaxe `Idempotency-Key`: `value`
 
 ## O que será avaliado?
+
+Você está trabalhando em uma aplicação em um ambiente produtivo, altamente escalável e que realiza múltiplos deploys diários. Diante disso, é necessário desenvolver uma solução definitiva, sem recorrer a paliativos ou medidas temporárias, garantindo a estabilidade e a eficiência contínua do sistema.
+
 - Desempenho da aplicação
   - O código teve um bom desempenho?
   - As respostas foram rápidas?
   - O teste de desempenho trouxe quais resultados?
-- Código funcional
-  - É possível rodar o código de uma forma fácil?
-  - Não é necessário instalar nenhuma ferramenta extra?
 - Boas práticas
   - O código usou boas práticas de desenvolvimento de software?
 - Organização

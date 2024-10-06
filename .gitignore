@@ -2,3 +2,4 @@
 vscode/
 target/
 asaas-tech-lab-test/
+memory:myDb?cache=shared

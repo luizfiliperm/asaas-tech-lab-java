@@ -1,20 +1,19 @@
-version: "3.5"
-
+version: '3.8'
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    hostname: api01
+  tech-lab-java:
+    build: .
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
     deploy:
       resources:
         limits:
           cpus: "0.45"
           memory: "220MB"
 
-networks:
-  default:
-    driver: bridge
-    name: asaas-tech-lab
+  k6:
+    image: grafana/k6
+    volumes:
+      - ./asaas-tech-lab-test:/scripts
+    entrypoint: ["k6", "run", "/scripts/tests-script.js"]
