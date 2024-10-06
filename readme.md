@@ -47,6 +47,16 @@ Sugestão de editores:
 - Database connections do Intellij
 - Sqlite Studio: https://sqlitestudio.pl/
 
+## Rotas pré configuradas
+
+Dentro do arquivo ``application.properties``, adicione a chave de API de sua equipe no campo ``asaas.api.key`` para possibilitar a integração com a API Asaas.
+
+Recursos já existentes para você solucionar os desafios abaixo
+
+``GET - /payments`` - Listar cobranças
+``GET - /payments?id=xxx`` - Buscar uma cobrança pelo Id
+``POST - /payments`` - Criar nova cobrança (Verificar dados de request no arquivo PaymentRequestDTO.java)
+
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
