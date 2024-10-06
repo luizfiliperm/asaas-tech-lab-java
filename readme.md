@@ -61,24 +61,31 @@ Recursos já existentes para você solucionar os desafios abaixo
 Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
 
 - Usuário: conta1@gmail.com
-- JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4`
 
 
 - Usuário: conta2@gmail.com
-- JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTJAZ21haWwuY29tIn0.rFBzQV06yvBBWESoOIEQXY6SoaM--CCS-HRePYSVJho
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTJAZ21haWwuY29tIn0.rFBzQV06yvBBWESoOIEQXY6SoaM--CCS-HRePYSVJho`
 
 
 - Usuário: conta3@gmail.com
-- JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTNAZ21haWwuY29tIn0.UZKhBxWjHSwAXq8_aYgVePo91eVPCeE90uJ7RRa0_IY
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTNAZ21haWwuY29tIn0.UZKhBxWjHSwAXq8_aYgVePo91eVPCeE90uJ7RRa0_IY`
 
 
 - Usuário: conta4@gmail.com
-- JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTRAZ21haWwuY29tIn0.82T4JpF5O2ek3WElqZod6kGr4zerdiHoVqhH_Po1HzI
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTRAZ21haWwuY29tIn0.82T4JpF5O2ek3WElqZod6kGr4zerdiHoVqhH_Po1HzI`
 
 
 - Usuário: conta5@gmail.com
-- JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTVAZ21haWwuY29tIn0.DGiOVtLcka2oJsKdsmLPOKZpZIuCf432TrNi-_pJCb0
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTVAZ21haWwuY29tIn0.DGiOVtLcka2oJsKdsmLPOKZpZIuCf432TrNi-_pJCb0`
 
+Exemplo de requisição:
+```bash
+curl --request GET \
+  --url http://localhost:8080/payments \
+  --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4' \
+  --cookie JSESSIONID=FEFEFBE88B9D77DC2DD1A35592005F24
+```
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
