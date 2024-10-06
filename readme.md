@@ -20,9 +20,7 @@ willevini
 
 ## Pré-requisitos
 
-Para subir a aplicação, basta rodar o comando ``docker-compose up --build tech-lab-java`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
-
-Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter os dados o script de teste e então ``docker-compose run k6`` para executar sempre que necessário. Lembre-se que o container com o projeto spring acima deve estar em execução.
+Para subir a aplicação, basta rodar o comando ``docker-compose up --build tech-lab-app`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 
 Você também pode rodar o projeto localmente através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
 
@@ -31,6 +29,15 @@ Para desenvolver localmente, você precisa ter instalado na seu dispositivo:
 - Java 17.0.12
 - Maven
 - Docker e Docker-Compose
+
+### Testes
+
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter o script de testes que usaremos como parte da avaliação da sua solução.
+
+Na pasta raiz do projeto, execute:
+
+- ``docker-compose up --build tech-lab-app``: para subir a aplicação
+- ``docker-compose run k6``: Executar os testes
 
 ### Banco de dados
 
@@ -54,7 +61,9 @@ Dentro do arquivo ``application.properties``, adicione a chave de API de sua equ
 Recursos já existentes para você solucionar os desafios abaixo
 
 ``GET - /payments`` - Listar cobranças
+
 ``GET - /payments?id=xxx`` - Buscar uma cobrança pelo Id
+
 ``POST - /payments`` - Criar nova cobrança (Verificar dados de request no arquivo PaymentRequestDTO.java)
 
 ## Autenticação API
