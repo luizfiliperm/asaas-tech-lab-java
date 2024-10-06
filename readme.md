@@ -20,30 +20,42 @@ willevini
 
 ## Pré-requisitos
 
-1. Antes de mais nada, você  vai precisar do maven:
+Para subir a aplicação, basta rodar o comando ``docker-compose up --build tech-lab-java`` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 
-https://maven.apache.org/download.cgi
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter os dados o script de teste e então ``docker-compose run k6`` para executar sempre que necessário. Lembre-se que o container com o projeto spring acima deve estar em execução.
 
-2. E também ter o docker instalado:
+Você também pode rodar o projeto localmente através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
 
-https://docs.docker.com/get-started/get-docker/
+Para desenvolver localmente, você precisa ter instalado na seu dispositivo:
 
-3. Para realizar os testes durante desenvolvimento, [siga essas instruções](./test-instructions.md)
+- Java 17.0.12
+- Maven
+- Docker e Docker-Compose
 
-Para rodar a aplicação, siga os passos abaixo:
+### Banco de dados
 
-1. Clone o repositório
-2. Abra o projeto em sua IDE de preferência
-3. Execute o comando abaixo para gerar o artefato: 
-```shell
-mvn clean package
-```
-4. Execute o comando abaixo para subir o projeto:
-```shell
-docker-compose up
-```
+O projeto utiliza o SQLite, criado após a primeira execução do projeto, você pode acessa-lo por meio do seu editor preferido, com os seguintes dados:
 
-Você também pode rodar o projeto através dos atalhos da sua IDE, como por exemplo, o atalho `Run` e `Debug` do IntelliJ IDEA.
+**URL**: ``jdbc:sqlite:memory:myDb?cache=shared``
+
+**username**: ``hackaton``
+
+**password**: ``hackaton``
+
+Sugestão de editores:
+
+- Database connections do Intellij
+- Sqlite Studio: https://sqlitestudio.pl/
+
+## Rotas pré configuradas
+
+Dentro do arquivo ``application.properties``, adicione a chave de API de sua equipe no campo ``asaas.api.key`` para possibilitar a integração com a API Asaas.
+
+Recursos já existentes para você solucionar os desafios abaixo
+
+``GET - /payments`` - Listar cobranças
+``GET - /payments?id=xxx`` - Buscar uma cobrança pelo Id
+``POST - /payments`` - Criar nova cobrança (Verificar dados de request no arquivo PaymentRequestDTO.java)
 
 ## Desafios
 
