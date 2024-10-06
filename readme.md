@@ -47,12 +47,12 @@ Sugestão de editores:
 
 ### Testes
 
-Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter o script de testes que usaremos como parte da avaliação da sua solução.
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter o script de testes que serão usados como parte da avaliação da sua solução.
 
 Na pasta raiz do projeto, execute:
 
 - ``docker-compose up --build tech-lab-app``: para subir a aplicação
-- ``docker-compose run k6``: Executar os testes
+- ``docker-compose run --rm k6``: Executar os testes
 
 ### Autenticação API
 Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
