@@ -30,15 +30,6 @@ Para desenvolver localmente, você precisa ter instalado na seu dispositivo:
 - Maven
 - Docker e Docker-Compose
 
-### Testes
-
-Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter o script de testes que usaremos como parte da avaliação da sua solução.
-
-Na pasta raiz do projeto, execute:
-
-- ``docker-compose up --build tech-lab-app``: para subir a aplicação
-- ``docker-compose run k6``: Executar os testes
-
 ### Banco de dados
 
 O projeto utiliza o SQLite, criado após a primeira execução do projeto, você pode acessa-lo por meio do seu editor preferido, com os seguintes dados:
@@ -54,19 +45,16 @@ Sugestão de editores:
 - Database connections do Intellij
 - Sqlite Studio: https://sqlitestudio.pl/
 
-## Rotas pré configuradas
+### Testes
 
-Dentro do arquivo ``application.properties``, adicione a chave de API de sua equipe no campo ``asaas.api.key`` para possibilitar a integração com a API Asaas.
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter o script de testes que usaremos como parte da avaliação da sua solução.
 
-Recursos já existentes para você solucionar os desafios abaixo
+Na pasta raiz do projeto, execute:
 
-``GET - /payments`` - Listar cobranças
+- ``docker-compose up --build tech-lab-app``: para subir a aplicação
+- ``docker-compose run k6``: Executar os testes
 
-``GET - /payments?id=xxx`` - Buscar uma cobrança pelo Id
-
-``POST - /payments`` - Criar nova cobrança (Verificar dados de request no arquivo PaymentRequestDTO.java)
-
-## Autenticação API
+### Autenticação API
 Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
 
 - Usuário: conta1@gmail.com
@@ -95,6 +83,19 @@ curl --request GET \
   --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4' \
   --cookie JSESSIONID=FEFEFBE88B9D77DC2DD1A35592005F24
 ```
+
+### Rotas pré configuradas
+
+Dentro do arquivo ``application.properties``, adicione a chave de API de sua equipe no campo ``asaas.api.key`` para possibilitar a integração com a API Asaas.
+
+Recursos já existentes para você solucionar os desafios abaixo
+
+``GET - /payments`` - Listar cobranças
+
+``GET - /payments?id=xxx`` - Buscar uma cobrança pelo Id
+
+``POST - /payments`` - Criar nova cobrança (Verificar dados de request no arquivo PaymentRequestDTO.java)
+
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
