@@ -4,6 +4,7 @@ import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
 import com.asaas.hackaton.service.PaymentService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class PaymentController {
     }
 
     @PostMapping
+    @Operation(description = "https://docs.asaas.com/reference/criar-nova-cobranca")
     public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
         PaymentResponseDTO responseDTO = paymentService.create(paymentRequestDTO);
         return ResponseEntity.ok(responseDTO);

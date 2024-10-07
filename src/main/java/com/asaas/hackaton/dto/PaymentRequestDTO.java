@@ -1,13 +1,20 @@
 package com.asaas.hackaton.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public record PaymentRequestDTO(
+
+        @Schema(example = "loren")
         String description,
+        @Schema(example = "50.0")
         BigDecimal value,
+        @Schema(example = "2024-10-30")
         String dueDate,
         CustomerAccountRequestDTO customer,
+        @Schema(example = "BOLETO")
         String billingType
 ) {
     public PaymentRequestDTO {
