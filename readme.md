@@ -57,23 +57,23 @@ Na pasta raiz do projeto, execute:
 ### Autenticação API
 Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
 
-- Usuário: conta1@gmail.com
+- Usuário: user1@example.com
 - `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4`
 
 
-- Usuário: conta2@gmail.com
+- Usuário: user2@example.com
 - `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTJAZ21haWwuY29tIn0.rFBzQV06yvBBWESoOIEQXY6SoaM--CCS-HRePYSVJho`
 
 
-- Usuário: conta3@gmail.com
+- Usuário: user3@example.com
 - `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTNAZ21haWwuY29tIn0.UZKhBxWjHSwAXq8_aYgVePo91eVPCeE90uJ7RRa0_IY`
 
 
-- Usuário: conta4@gmail.com
+- Usuário: user4@example.com
 - `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTRAZ21haWwuY29tIn0.82T4JpF5O2ek3WElqZod6kGr4zerdiHoVqhH_Po1HzI`
 
 
-- Usuário: conta5@gmail.com
+- Usuário: user5example.com
 - `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTVAZ21haWwuY29tIn0.DGiOVtLcka2oJsKdsmLPOKZpZIuCf432TrNi-_pJCb0`
 
 Exemplo de requisição:
