@@ -16,7 +16,6 @@ import java.io.IOException;
 public class AuthenticatorFilter extends OncePerRequestFilter {
 
     private static final String HEADER_AUTHORIZATION = "Authorization";
-    private static final String BYPASS_URI = "/healthcheck";
     private final UserService userService;
 
     public AuthenticatorFilter(UserService userService) {
@@ -43,6 +42,9 @@ public class AuthenticatorFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getServletPath();
-        return path.startsWith(BYPASS_URI);
+        if (path.startsWith("/healthcheck")) return true;
+        if (!path.startsWith("/payments") && !path.startsWith("/users")) return true;
+
+        return false;
     }
 }
