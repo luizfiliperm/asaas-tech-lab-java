@@ -1,5 +1,6 @@
 package com.asaas.hackaton.controller;
 
+import com.asaas.hackaton.repository.UserRepository;
 import com.asaas.hackaton.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
 
@@ -17,9 +17,11 @@ public class AuthenticatorFilter extends OncePerRequestFilter {
 
     private static final String HEADER_AUTHORIZATION = "Authorization";
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public AuthenticatorFilter(UserService userService) {
+    public AuthenticatorFilter(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -30,12 +32,13 @@ public class AuthenticatorFilter extends OncePerRequestFilter {
             return;
         }
 
-        Boolean isValid = userService.validateLogin(request.getHeader(HEADER_AUTHORIZATION));
-        if (!isValid) {
+        String issuer = userService.getIssuer(request.getHeader(HEADER_AUTHORIZATION));
+        if (issuer == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return;
         }
 
+        request.setAttribute("user", userRepository.findByEmail(issuer));
         filterChain.doFilter(request, response);
     }
 

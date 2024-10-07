@@ -27,7 +27,7 @@ public class UserService {
         return new UserAdapter(user.getEmail(), user.getApiKey());
     }
 
-    public Boolean validateLogin(String apiKey) {
-        return JwtUtils.getIssuer(apiKey) != null;
+    public String getIssuer(String apiKey) {
+        return JwtUtils.getIssuer(apiKey);
     }
 }
