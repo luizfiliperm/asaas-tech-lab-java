@@ -1,6 +1,5 @@
 package com.asaas.hackaton.controller;
 
-import com.asaas.hackaton.adapter.PaymentAdapter;
 import com.asaas.hackaton.burstlimit.BurstLimit;
 import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentRequestDTO;
@@ -34,13 +33,14 @@ public class PaymentController {
     }
 
     @GetMapping
-    @RateLimit(requestsPerMinute = 100)
+    @RateLimit(requestsPerMinute = 10)
     public ResponseEntity<ListPaymentResponseDTO> list() {
         ListPaymentResponseDTO responseDTO = paymentService.list();
         return ResponseEntity.ok(responseDTO);
     }
 
     @GetMapping("/{id}")
+    @RateLimit(requestsPerMinute = 10)
     public ResponseEntity<PaymentResponseDTO> findById(@PathVariable String id) {
         PaymentResponseDTO responseDTO = paymentService.findById(id);
         return ResponseEntity.ok(responseDTO);

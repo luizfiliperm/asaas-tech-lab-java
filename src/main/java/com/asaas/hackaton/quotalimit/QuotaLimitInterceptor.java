@@ -1,6 +1,6 @@
 package com.asaas.hackaton.quotalimit;
 
-import com.asaas.hackaton.controller.AuthenticatorInterceptor;
+import com.asaas.hackaton.controller.AuthenticatorFilter;
 import com.asaas.hackaton.service.QuotaLimitService;
 import com.asaas.hackaton.util.JwtUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ public class QuotaLimitInterceptor implements HandlerInterceptor {
             QuotaLimit quotaLimit = handlerMethod.getMethodAnnotation(QuotaLimit.class);
 
             if (quotaLimit != null) {
-                String userIssuer = JwtUtils.getIssuer(request.getHeader(AuthenticatorInterceptor.HEADER_AUTHORIZATION));
+                String userIssuer = JwtUtils.getIssuer(request.getHeader(AuthenticatorFilter.HEADER_AUTHORIZATION));
 
                 if (!quotaLimitService.isAllowed(userIssuer)) {
                     response.setStatus(HttpStatus.FORBIDDEN.value());

@@ -15,7 +15,7 @@ import java.io.IOException;
 @Component
 public class AuthenticatorFilter extends OncePerRequestFilter {
 
-    private static final String HEADER_AUTHORIZATION = "Authorization";
+    public static final String HEADER_AUTHORIZATION = "Authorization";
     private final UserService userService;
     private final UserRepository userRepository;
 
