@@ -119,6 +119,8 @@ O desafio consiste em receber uma alta carga de chamados na API e adicionar os l
 **Desafio 3: Aplicar idempotência**
 - Fazer com que a rotina de criação de cobranças seja idempotente através de uma chave de idempotência informada no header da requisição utilizando a sintaxe `Idempotency-Key`: `value`
 
+#### Documentação da API Asaas: https://docs.asaas.com
+
 ## O que será avaliado?
 
 Você está trabalhando em uma aplicação em um ambiente produtivo, altamente escalável e que realiza múltiplos deploys diários. Diante disso, é necessário desenvolver uma solução definitiva, sem recorrer a paliativos ou medidas temporárias, garantindo a estabilidade e a eficiência contínua do sistema.
