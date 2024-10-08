@@ -1,8 +1,11 @@
 package com.asaas.hackaton.integration;
 
+import com.asaas.hackaton.dto.BalanceResponseDTO;
 import com.asaas.hackaton.dto.CustomerAccountRequestDTO;
 import com.asaas.hackaton.dto.ListPaymentResponseDTO;
 import com.asaas.hackaton.dto.PaymentResponseDTO;
+import com.asaas.hackaton.dto.transfer.TransferRequestDTO;
+import com.asaas.hackaton.dto.transfer.TransferResponseDTO;
 import com.asaas.hackaton.integration.dto.AsaasCreatePaymentRequestDTO;
 import com.asaas.hackaton.integration.dto.AsaasCreateCustomerAccountResponseDTO;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.math.BigDecimal;
 
 @Service
 public class AsaasClient {
@@ -81,6 +86,30 @@ public class AsaasClient {
         HttpEntity<Void> entity = new HttpEntity<>(createHeaders());
 
         ResponseEntity<PaymentResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, PaymentResponseDTO.class);
+
+        return response.getBody();
+    }
+
+    public BigDecimal retrieveFineBalance(){
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .path("/finance/balance")
+                .toUriString();
+
+        HttpEntity<Void> entity = new HttpEntity<>(createHeaders());
+
+        ResponseEntity<BalanceResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, BalanceResponseDTO.class);
+
+        return response.getBody().balance();
+    }
+
+    public TransferResponseDTO createTransfer(TransferRequestDTO transferDTO) {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .path("/transfers")
+                .toUriString();
+
+        HttpEntity<TransferRequestDTO> entity = new HttpEntity<>(transferDTO, createHeaders());
+
+        ResponseEntity<TransferResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, entity, TransferResponseDTO.class);
 
         return response.getBody();
     }

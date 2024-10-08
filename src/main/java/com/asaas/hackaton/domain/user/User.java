@@ -15,6 +15,9 @@ public class User {
     @Column(unique = true)
     String apiKey;
 
+    @Column
+    Integer maxPaymentsCreatedPerDay = 10;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +43,13 @@ public class User {
     public User setApiKey(String apiKey) {
         this.apiKey = apiKey;
         return this;
+    }
+
+    public Integer getMaxPaymentsCreatedPerDay() {
+        return maxPaymentsCreatedPerDay;
+    }
+
+    public void setMaxPaymentsCreatedPerDay(Integer maxPaymentsCreatedPerDay) {
+        this.maxPaymentsCreatedPerDay = maxPaymentsCreatedPerDay;
     }
 }
