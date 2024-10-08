@@ -3,6 +3,7 @@ package com.asaas.hackaton.ratelimit;
 import com.asaas.hackaton.controller.AuthenticatorFilter;
 import com.asaas.hackaton.service.RateLimitService;
 import com.asaas.hackaton.util.JwtUtils;
+import com.asaas.hackaton.util.UserIpUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -27,10 +28,10 @@ public class RateLimitInterceptor implements HandlerInterceptor {
             RateLimit rateLimit = handlerMethod.getMethodAnnotation(RateLimit.class);
 
             if (rateLimit != null) {
-                String userIssuer = JwtUtils.getIssuer(request.getHeader(AuthenticatorFilter.HEADER_AUTHORIZATION));
+                String userIp = UserIpUtils.getUserIp(request);
                 int maxRequestsPerSecond = rateLimit.requestsPerMinute();
 
-                if (!rateLimitService.isAllowed(userIssuer, request, maxRequestsPerSecond)) {
+                if (!rateLimitService.isAllowed(userIp, request, maxRequestsPerSecond)) {
                     response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
                     return false;
                 }

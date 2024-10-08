@@ -16,8 +16,8 @@ public class RateLimitService implements BaseLimitService {
 
     private final Integer MAX_SECONDS = 60;
 
-    public Boolean isAllowed(String userIssuer, HttpServletRequest request, int maxRequestsPerSecond) {
-        String key = buildKey(userIssuer, request.getMethod(), request.getRequestURI());
+    public Boolean isAllowed(String userIp, HttpServletRequest request, int maxRequestsPerSecond) {
+        String key = buildKey(userIp, request.getMethod(), request.getRequestURI());
         RequestInfo requestInfo = requestInfoMap.get(key);
         if (requestInfo == null) {
             requestInfo = new RequestInfo(Instant.now(), 0);
@@ -30,7 +30,7 @@ public class RateLimitService implements BaseLimitService {
             return true;
         }
 
-        if (requestInfo.getRequestCount() < maxRequestsPerSecond) {
+        if (requestInfo.getRequestCount() <= maxRequestsPerSecond) {
             requestInfo.setRequestCount(requestInfo.getRequestCount() + 1);
             return true;
         }
