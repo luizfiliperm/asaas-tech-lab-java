@@ -16,7 +16,7 @@ public class User {
     String apiKey;
 
     @Column
-    Integer maxPaymentsCreatedPerDay = 10;
+    Integer maxPaymentsCreatedPerDay = 100;
 
     public Long getId() {
         return id;

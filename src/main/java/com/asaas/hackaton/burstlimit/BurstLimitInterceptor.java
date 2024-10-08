@@ -1,5 +1,6 @@
 package com.asaas.hackaton.burstlimit;
 
+import com.asaas.hackaton.util.UserIpUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class BurstLimitInterceptor implements HandlerInterceptor {
             BurstLimit burstLimit = handlerMethod.getMethodAnnotation(BurstLimit.class);
 
             if (burstLimit != null) {
-                String key = request.getMethod() + request.getRequestURI();
+                String key = UserIpUtils.getUserIp(request) + request.getMethod() + request.getRequestURI();
                 int maxParallelRequests = burstLimit.maxParallelRequests();
 
                 Semaphore semaphore = semaphoreMap.computeIfAbsent(key, k -> new Semaphore(maxParallelRequests));

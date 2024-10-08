@@ -3,6 +3,7 @@ package com.asaas.hackaton.quotalimit;
 import com.asaas.hackaton.controller.AuthenticatorFilter;
 import com.asaas.hackaton.service.QuotaLimitService;
 import com.asaas.hackaton.util.JwtUtils;
+import com.asaas.hackaton.util.UserIpUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class QuotaLimitInterceptor implements HandlerInterceptor {
                 String userIssuer = JwtUtils.getIssuer(request.getHeader(AuthenticatorFilter.HEADER_AUTHORIZATION));
 
                 if (!quotaLimitService.isAllowed(userIssuer)) {
-                    response.setStatus(HttpStatus.FORBIDDEN.value());
+                    response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
                     return false;
                 }
             }

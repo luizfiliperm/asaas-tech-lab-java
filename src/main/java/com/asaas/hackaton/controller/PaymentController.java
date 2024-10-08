@@ -27,7 +27,7 @@ public class PaymentController {
     @BurstLimit(maxParallelRequests = 10)
     @Idempotent
     @Operation(description = "https://docs.asaas.com/reference/criar-nova-cobranca")
-    public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) {
+    public ResponseEntity<PaymentResponseDTO> save(@RequestBody PaymentRequestDTO paymentRequestDTO) throws InterruptedException {
         PaymentResponseDTO responseDTO = paymentService.create(paymentRequestDTO);
         return ResponseEntity.ok(responseDTO);
     }
