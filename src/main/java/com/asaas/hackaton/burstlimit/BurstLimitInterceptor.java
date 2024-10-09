@@ -40,11 +40,14 @@ public class BurstLimitInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        Semaphore semaphore = (Semaphore) request.getAttribute("burstLimit");
-        if (semaphore != null) {
-            semaphore.release();
+        if (handler instanceof HandlerMethod handlerMethod) {
+            BurstLimit burstLimit = handlerMethod.getMethodAnnotation(BurstLimit.class);
+            if (burstLimit != null) {
+                Semaphore semaphore = (Semaphore) request.getAttribute("burstLimit");
+                if (semaphore != null) {
+                    semaphore.release();
+                }
+            }
         }
-
     }
-
 }

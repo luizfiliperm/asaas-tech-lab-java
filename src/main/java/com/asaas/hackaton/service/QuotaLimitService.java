@@ -33,7 +33,7 @@ public class QuotaLimitService implements BaseLimitService {
             userQuotaMap.putIfAbsent(user.getId(), userQuota);
         }
 
-        if (userQuota.getRequestCount().get() >= user.getMaxPaymentsCreatedPerDay()) {
+        if (userQuotaMap.get(user.getId()).getRequestCount().get() >= user.getMaxPaymentsCreatedPerDay()) {
             return false;
         }
 
