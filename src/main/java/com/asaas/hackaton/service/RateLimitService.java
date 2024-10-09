@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class RateLimitService implements BaseLimitService {
 
-    private final Map<String, RequestInfo> requestInfoMap = new HashMap<>();
+    private final ConcurrentHashMap<String, RequestInfo> requestInfoMap = new ConcurrentHashMap<>();
 
     private final Integer MAX_SECONDS = 60;
 

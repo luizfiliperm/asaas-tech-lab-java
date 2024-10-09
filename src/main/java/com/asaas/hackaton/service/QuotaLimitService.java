@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class QuotaLimitService implements BaseLimitService {
 
     private final UserRepository userRepository;
 
-    private final Map<Long, UserQuota> userQuotaMap = new HashMap<>();
+    private final ConcurrentHashMap<Long, UserQuota> userQuotaMap = new ConcurrentHashMap<>();
 
     public QuotaLimitService(UserRepository userRepository) {
         this.userRepository = userRepository;
