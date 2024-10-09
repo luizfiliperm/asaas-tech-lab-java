@@ -27,12 +27,12 @@ public class RateLimitService implements BaseLimitService {
         }
 
         if (requestInfo.getInstant().plusSeconds(MAX_SECONDS).isBefore(Instant.now())) {
-            requestInfo.setRequestCount(new AtomicInteger(1));
+            requestInfo.setRequestCount(new AtomicInteger());
             requestInfo.setInstant(Instant.now());
             return true;
         }
 
-        if (requestInfo.getRequestCount().get() <= maxRequestsPerSecond) {
+        if (requestInfo.getRequestCount().get() < maxRequestsPerSecond) {
             requestInfo.incrementRequestCount();
             return true;
         }

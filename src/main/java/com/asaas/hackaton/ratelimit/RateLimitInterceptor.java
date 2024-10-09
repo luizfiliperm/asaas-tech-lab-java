@@ -29,9 +29,9 @@ public class RateLimitInterceptor implements HandlerInterceptor {
 
             if (rateLimit != null) {
                 String userIp = UserIpUtils.getUserIp(request);
-                int maxRequestsPerSecond = rateLimit.requestsPerMinute();
+                int maxRequestsPerMinute = rateLimit.requestsPerMinute();
 
-                if (!rateLimitService.isAllowed(userIp, request, maxRequestsPerSecond)) {
+                if (!rateLimitService.isAllowed(userIp, request, maxRequestsPerMinute)) {
                     response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
                     return false;
                 }
