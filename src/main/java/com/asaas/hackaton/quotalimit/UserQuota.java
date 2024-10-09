@@ -1,13 +1,14 @@
 package com.asaas.hackaton.quotalimit;
 
 import java.time.LocalDate;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class UserQuota {
 
     private LocalDate date;
-    private int requestCount;
+    private AtomicInteger requestCount;
 
-    public UserQuota(LocalDate date, int requestCount) {
+    public UserQuota(LocalDate date, AtomicInteger requestCount) {
         this.date = date;
         this.requestCount = requestCount;
     }
@@ -16,11 +17,11 @@ public class UserQuota {
         return date;
     }
 
-    public int getRequestCount() {
+    public AtomicInteger getRequestCount() {
         return requestCount;
     }
 
     public void incrementRequestCount() {
-        this.requestCount++;
+        requestCount.incrementAndGet();
     }
 }

@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class RateLimitService implements BaseLimitService {
@@ -21,18 +22,18 @@ public class RateLimitService implements BaseLimitService {
         String key = buildKey(userIp, request.getMethod(), request.getRequestURI());
         RequestInfo requestInfo = requestInfoMap.get(key);
         if (requestInfo == null) {
-            requestInfo = new RequestInfo(Instant.now(), 0);
-            requestInfoMap.put(key, requestInfo);
+            requestInfo = new RequestInfo(Instant.now(), new AtomicInteger());
+            requestInfoMap.putIfAbsent(key, requestInfo);
         }
 
         if (requestInfo.getInstant().plusSeconds(MAX_SECONDS).isBefore(Instant.now())) {
-            requestInfo.setRequestCount(1);
+            requestInfo.setRequestCount(new AtomicInteger(1));
             requestInfo.setInstant(Instant.now());
             return true;
         }
 
-        if (requestInfo.getRequestCount() <= maxRequestsPerSecond) {
-            requestInfo.setRequestCount(requestInfo.getRequestCount() + 1);
+        if (requestInfo.getRequestCount().get() <= maxRequestsPerSecond) {
+            requestInfo.incrementRequestCount();
             return true;
         }
 

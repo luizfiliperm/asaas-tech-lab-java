@@ -1,17 +1,18 @@
 package com.asaas.hackaton.ratelimit;
 
 import java.time.Instant;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RequestInfo {
 
     private Instant instant;
 
-    private Integer requestCount;
+    private AtomicInteger requestCount;
 
     public RequestInfo() {
     }
 
-    public RequestInfo(Instant instant, Integer requestCount) {
+    public RequestInfo(Instant instant, AtomicInteger requestCount) {
         this.instant = instant;
         this.requestCount = requestCount;
     }
@@ -24,11 +25,15 @@ public class RequestInfo {
         this.instant = instant;
     }
 
-    public Integer getRequestCount() {
+    public AtomicInteger getRequestCount() {
         return requestCount;
     }
 
-    public void setRequestCount(Integer requestCount) {
+    public void setRequestCount(AtomicInteger requestCount) {
         this.requestCount = requestCount;
+    }
+
+    public void incrementRequestCount() {
+        requestCount.incrementAndGet();
     }
 }

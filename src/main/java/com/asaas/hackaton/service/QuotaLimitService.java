@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class QuotaLimitService implements BaseLimitService {
@@ -28,11 +29,11 @@ public class QuotaLimitService implements BaseLimitService {
         UserQuota userQuota = userQuotaMap.get(user.getId());
 
         if (userQuota == null || !userQuota.getDate().equals(today)) {
-            userQuota = new UserQuota(today, 1);
-            userQuotaMap.put(user.getId(), userQuota);
+            userQuota = new UserQuota(today, new AtomicInteger());
+            userQuotaMap.putIfAbsent(user.getId(), userQuota);
         }
 
-        if (userQuota.getRequestCount() >= user.getMaxPaymentsCreatedPerDay()) {
+        if (userQuota.getRequestCount().get() >= user.getMaxPaymentsCreatedPerDay()) {
             return false;
         }
 
