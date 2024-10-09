@@ -112,7 +112,7 @@ O desafio consiste em receber uma alta carga de chamados na API e adicionar os l
   - máximo de 10 requisições paralelas **por IP** no endpoint de Criar cobrança
   - o Ip deverá ser enviado via header na request como `remote-ip` para que seja possível simular diferentes IPs
 - Quota
-  - verificar limites diários configurados para cada usuário afim de limitar o quantidade de acessos ao endpoint de criação de cobrança
+  - verificar limites diário de 100 requisições para cada usuário, afim de limitar o quantidade de acessos ao endpoint de criação de cobrança
 
 **Desafio 2: Fazer uma rotina de transferências automáticas no Asaas**
 - O desafio é criar um Job que irá realizar transferências automáticas diariamente às 8h e 12h
