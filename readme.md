@@ -40,6 +40,14 @@ O projeto utiliza o SQLite, criado após a primeira execução do projeto, você
 
 **password**: ``hackaton``
 
+Caso você esteja utilizando a aplicação via Docker, o arquivo estará dentro do container, para acessa-lo você pode copia-lo com o comando abaixo na raiz do projeto:
+
+```bash
+docker cp <container-id>:'/app/memory:myDb?cache=shared' ./
+```
+
+Para descobrir o ``container-id``, execute ``docker ps`` para listar os containers que estão executando e seus respectivos Ids.
+
 Sugestão de editores:
 
 - Database connections do Intellij
